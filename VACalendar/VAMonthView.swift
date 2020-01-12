@@ -144,7 +144,7 @@ class VAMonthView: UIView {
     }
     
     private func setupMonthLabel() {
-        let textColor = month.isCurrent ? monthViewAppearanceDelegate?.verticalCurrentMonthTitleColor?() :
+        let textColor = /*month.isCurrent ? monthViewAppearanceDelegate?.verticalCurrentMonthTitleColor?() :*/
             monthViewAppearanceDelegate?.verticalMonthTitleColor?()
 				let textFormatter = monthViewAppearanceDelegate?.verticalMonthDateFormater?() ?? VAFormatters.monthFormatter
         
@@ -153,7 +153,7 @@ class VAMonthView: UIView {
         monthLabel?.textColor = textColor ?? monthLabel?.textColor
         monthLabel?.font = monthViewAppearanceDelegate?.verticalMonthTitleFont?() ?? monthLabel?.font
         monthLabel?.sizeToFit()
-        monthLabel?.center.x = center.x
+        monthLabel?.frame.origin.x = 21//(center.x)-150
         addSubview(monthLabel ?? UIView())
     }
     

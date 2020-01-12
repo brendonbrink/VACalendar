@@ -15,7 +15,7 @@ public enum VADayState: Int {
 
 @objc
 public enum VADayShape: Int {
-    case square, circle
+    case square, circle, round
 }
 
 public enum VADaySupplementary: Hashable {

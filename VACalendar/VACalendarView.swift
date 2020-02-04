@@ -286,8 +286,10 @@ extension VACalendarView: VAMonthViewDelegate {
             guard day.state == .available else { return }
             
             calendar.deselectAll()
+            let dayComp = DateComponents(day: -1)
+            let modifiedDate = Calendar.current.date(byAdding: dayComp, to: day.date)
             calendar.setDaySelectionState(day, state: .selected)
-            calendarDelegate?.selectedDate?(day.date)
+            calendarDelegate?.selectedDate?(modifiedDate!)
             
         case .multi:
             calendar.setDaySelectionState(day, state: day.reverseSelectionState)

@@ -149,7 +149,7 @@ class VAMonthView: UIView {
 				let textFormatter = monthViewAppearanceDelegate?.verticalMonthDateFormater?() ?? VAFormatters.monthFormatter
         
         monthLabel = UILabel()
-        monthLabel?.text = textFormatter.string(from: month.date)
+        monthLabel?.text = textFormatter.string(from: month.lastMonthDay)
         monthLabel?.textColor = textColor ?? monthLabel?.textColor
         monthLabel?.font = monthViewAppearanceDelegate?.verticalMonthTitleFont?() ?? monthLabel?.font
         monthLabel?.sizeToFit()

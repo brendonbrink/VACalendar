@@ -16,6 +16,9 @@ public enum DaysAvailability {
     case all
     case some([Date])
 }
+//[Date]
+var dat = Date()
+var datArr = [Date]()
 
 public class VACalendar {
     
@@ -23,7 +26,7 @@ public class VACalendar {
     weak var delegate: VACalendarDelegate?
     
     private let calendar: Calendar
-    private var daysAvailability: DaysAvailability = .all
+    private var daysAvailability: DaysAvailability = .some(datArr)
     
     private var selectedDays = [VADay]() {
         didSet {
@@ -39,7 +42,9 @@ public class VACalendar {
         self.calendar = calendar
         
         if let selectedDate = selectedDate {
-            let day = VADay(date: selectedDate, state: .selected, calendar: calendar)
+            let dayComp = DateComponents(day: +1)
+            let modifiedDate = Calendar.current.date(byAdding: dayComp, to: selectedDate)
+            let day = VADay(date: modifiedDate!, state: .selected, calendar: calendar)
             selectedDays = [day]
         }
         
@@ -78,7 +83,7 @@ public class VACalendar {
     func setDaySelectionState(_ day: VADay, state: VADayState) {
         months.first(where: { $0.dateInThisMonth(day.date) })?.setDaySelectionState(day, state: state)
         
-        if let index = selectedDays.index(of: day) {
+        if let index = selectedDays.firstIndex(of: day) {
             selectedDays.remove(at: index)
         } else {
             selectedDays.append(day)
